@@ -1,0 +1,12 @@
+<%- include("partials/header.ejs") %>
+
+<h1>Edit Blog Post</h1>
+
+<form method="POST" action="/edit/<%= post.id %>">
+  <input name="name" type="text" class="feedback-input" value="<%= post.name %>" style="color:black"; maxlength="20" required />
+  <input name="email" type="email" class="feedback-input" value="<%= post.email %>" style="color:black"; maxlength="32" required />
+  <textarea name="text" class="feedback-input" style="color:black"; required><%= post.text %></textarea>
+  <input type="submit" value="Update Post" />
+</form>
+
+<%- include("partials/footer.ejs") %>

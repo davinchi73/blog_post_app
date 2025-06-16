@@ -1,0 +1,41 @@
+<%- include("partials/header.ejs") %>
+
+<h1>Home Page</h1>
+<p style="margin-bottom: 30px;">Here is where all of your blog posts are!</p>
+
+<% if (posts.length === 0) { %>
+
+  <p style="margin-bottom:30px;">No posts to show</p>
+
+  <div class="center-button-container">
+    <a href="/post" class="cool-post-button" style="text-align: center; margin-top: 30px;">Create your first post</a>
+  </div>
+
+<% } else { %>
+  <div class="post-grid">
+    <% posts.forEach(post => { %>
+      <div class="post-box">
+        <h3><%= post.name %></h3>
+        <p><strong>Email:</strong> <%= post.email %></p>
+        <p><%= post.text %></p>
+        <p class="timestamp"><em><%= post.timestamp %></em></p>
+
+        <div class="post-actions">
+          <form action="/edit/<%= post.id %>" method="GET">
+            <button type="submit" class="action-button" style="font-size: 0.6em;">Edit</button>
+          </form>
+          <form action="/delete/<%= post.id %>" method="POST">
+            <button type="submit" class="action-button" style="font-size: 0.6em;">Delete</button>
+          </form>
+        </div>
+      </div>
+    <% }) %>
+
+    <div class="create-post-container">
+      <a href="/post" class="cool-post-button" style="text-align: center; margin-top: 30px;" >Create New Post</a>
+    </div>
+
+  </div>
+<% } %>
+
+<%- include("partials/footer.ejs") %>
